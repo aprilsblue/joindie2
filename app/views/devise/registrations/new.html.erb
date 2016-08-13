@@ -3,23 +3,43 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "ID [E-mail]" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password [6 characters minimum]" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Password confirmation" %>
   </div>
+
+  <div class="form-group">
+    <%= f.text_field :name, class: "form-control", placeholder: "Team name" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :genre, class: "form-control", placeholder: "Team genre" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :num_of_member, class: "form-control", placeholder: "Number of team members" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :mobile, class: "form-control", placeholder: "Mobile" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :homepage_url, class: "form-control", placeholder: "Homepage URL" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_field :description, class: "form-control", placeholder: "Description" %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit "Sign up" %>
