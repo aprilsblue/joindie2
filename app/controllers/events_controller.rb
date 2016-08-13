@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render xml: @eventss }
+      format.xml  { render xml: @events }
     end
   end
 
