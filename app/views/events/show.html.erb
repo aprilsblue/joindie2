@@ -4,25 +4,78 @@
       <div class="card-image">
         <img src="<%= @event.poster %>" style="width:100%" />
       </div>
+      <div class="card-body">
+        <h4 class="card-title"><%= @event.holder.name %></h4>
+        <h6 class="card-meta"><%= @event.holder.genre %></h6>
+        <h6 class="card-meta"><%= @event.holder.mobile %></h6>
+        <h6 class="card-meta">
+          <a href="<%= @event.holder.homepage_url %>"><%= @event.holder.homepage_url %></a>
+        </h6>
+        <%= truncate @event.holder.description, :length => 400, :separator => /\w/, :omission => "..." %>
+      </div>
     </div>
   </div>
   <div class="col-md-5">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"><%= @event.title %></h4>
-        <h6 class="card-meta"><%= @event.place %></h6>
-        <h6 class="card-meta"><%= @event.showtime.strftime("%-m/%-d %I:%M%p") %></h6>
-        <h6 class="card-meta">대관비 : <%= @event.rental_fee %>만원</h6>
+        <h1 class="card-title large"><%= @event.title %></h1>
+        <h3 class="card-meta large">장소 : <%= @event.place %></h3>
+        <h3 class="card-meta large">일시 : <%= @event.showtime.strftime("%-m/%-d %I:%M%p") %></h3>
+        <h3 class="card-meta large">대관비 : <%= @event.rental_fee %>만원</h3>
       </div>
+      <hr />
       <div class="card-body">
-        <%= @event.holder.inspect %>
-      </div>
-      <div class="card-footer">
-        <% @event.joins.each do |join| %>
-          <%= join.inspect %>
+        <h1 class="card-title">함께하는 팀</h1>
+        <% approved_joins = @event.joins.select { |hash| hash[:approved] } %>
+        <% approved_joins.each do |join| %>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="card-header" style="padding-left:0;padding-right:0;">
+              <h4 class="card-title"><%= join.team.name %></h4>
+              <h6 class="card-meta"><%= join.team.genre %></h6>
+              <h6 class="card-meta"><%= join.team.mobile %></h6>
+              <h6 class="card-meta">
+                <a href="<%= join.team.homepage_url %>"><%= join.team.homepage_url %></a>
+              </h6> 
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="card-body">
+              <%= join.description %>
+            </div>
+          </div>
+        </div>
         <% end %>
-        <% @event.teams.each do |team| %>
-          <%= team.inspect %>
+      </div>
+
+      <%= link_to('이 밴드들과의 공연 신청하기', '#', class: "btn flat positive inverse") %>
+      <%= link_to('공연 신청 취소하기', '#', class: "btn flat negative inverse") %>
+
+      <div class="card-footer">
+        <h1 class="card-title">연합공연 신청 관리</h1>
+        <% pending_joins = @event.joins.select { |hash| !hash[:approved] } %>
+        <% pending_joins.each do |join| %>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="card-header" style="padding-left:0;padding-right:0;">
+              <h4 class="card-title"><%= join.team.name %></h4>
+              <h6 class="card-meta"><%= join.team.genre %></h6>
+              <h6 class="card-meta"><%= join.team.mobile %></h6>
+              <h6 class="card-meta">
+                <a href="<%= join.team.homepage_url %>"><%= join.team.homepage_url %></a>
+              </h6>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card-body">
+              <%= join.description %>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <%= link_to('수락', '#', class: "btn flat positive")%>
+            <%= link_to('거절', '#', class: "btn flat negative")%>
+          </div>
+        </div>
         <% end %>
       </div>
     </div>

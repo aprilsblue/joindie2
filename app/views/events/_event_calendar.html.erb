@@ -1,7 +1,9 @@
 <div class="col-md-1" style="padding:0;">
   <div class="card" style="height:700px;">
     <div class="card-image">
-      <img src="<%= event.poster %>" class="img-responsive" />
+      <a href=<%="/events/#{event.id}"%>>
+        <img src="<%= event.poster %>" class="img-responsive" />
+      </a>
     </div>
     <div class="card-header">
       <h4 class="card-title"><%= event.title %></h4>

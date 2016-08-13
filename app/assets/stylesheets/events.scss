@@ -53,4 +53,49 @@
   margin-bottom: 0;
   margin-top: 0;
 }
-
+.card .card-title.large {
+  font-size: 3.0em;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+.card .card-meta.large {
+  color: #b3b3b3;
+  font-size: 1.5em;
+  margin-bottom: .2rem;
+  margin-top: 0;
+}
+.flat {
+  width:100%;
+  border-radius: 0;
+}
+.positive {
+  color: #2979ff;
+  &:hover {
+    color: #448aff;
+  }
+}
+.positive.inverse {
+  background-color: #2979ff;
+  &:hover {
+    background-color: #448aff;
+  }
+}
+.negative {
+  color: #f44336;
+  &:hover {
+    color: #ff5252;
+  }
+}
+.negative.inverse {
+  background-color: #f44336;
+  &:hover {
+    background-color: #ff5252;
+  }
+}
+.inverse {
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
