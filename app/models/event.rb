@@ -1,8 +1,9 @@
 class Event < ApplicationRecord
-    #1:n
-    belongs_to :owner, class_name: :Team, foreign_key: :team_id
-    #m:n
-    has_many :joins
-    has_many :teams, through: :joins
-    
+  mount_uploader :poster, UploaderUploader
+  # Team 1:N Event
+  belongs_to :holder, class_name: :Team, foreign_key: :team_id
+
+  # Team M:N Event
+  has_many :joins
+  has_many :teams, through: :joins
 end
