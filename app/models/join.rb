@@ -1,4 +1,7 @@
 class Join < ApplicationRecord
-    belongs_to :team
-    belongs_to :event
+  # Team 1:N Join
+  belongs_to :team
+
+  # Event 1:N Join
+  belongs_to :event
 end
