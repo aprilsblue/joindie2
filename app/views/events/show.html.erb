@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-2">
+    <div class="card">
+      <div class="card-image">
+        <img src="<%= @event.poster %>" style="width:100%" />
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"><%= @event.title %></h4>
+        <h6 class="card-meta"><%= @event.place %></h6>
+        <h6 class="card-meta"><%= @event.showtime.strftime("%-m/%-d %I:%M%p") %></h6>
+        <h6 class="card-meta">대관비 : <%= @event.rental_fee %>만원</h6>
+      </div>
+      <div class="card-body">
+        <%= @event.holder.inspect %>
+      </div>
+      <div class="card-footer">
+        <% @event.joins.each do |join| %>
+          <%= join.inspect %>
+        <% end %>
+        <% @event.teams.each do |team| %>
+          <%= team.inspect %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

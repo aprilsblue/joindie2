@@ -5,6 +5,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.integer :team_id
 
       # Event information
+      t.string :title
       t.string :place
       t.string :poster
       t.datetime :showtime
