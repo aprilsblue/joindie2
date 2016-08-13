@@ -1,6 +1,13 @@
 class DeviseCreateTeams < ActiveRecord::Migration[5.0]
   def change
     create_table :teams do |t|
+      
+      ## Team information
+      t.text :team_name
+      t.text :team_genre
+      t.text :team_phone
+      t.integer :team_member_number
+      
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
