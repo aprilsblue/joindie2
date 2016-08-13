@@ -13,16 +13,31 @@
 ActiveRecord::Schema.define(version: 20160813115809) do
 
   create_table "events", force: :cascade do |t|
+    t.integer  "team_id"
+    t.string   "place"
+    t.string   "poster"
+    t.datetime "showtime"
+    t.integer  "rental_fee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "joins", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "team_id"
+    t.integer  "event_id"
+    t.text     "description"
+    t.boolean  "approved",    default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.string   "genre"
+    t.string   "mobile"
+    t.string   "homepage_url"
+    t.text     "description"
+    t.integer  "num_of_member"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
