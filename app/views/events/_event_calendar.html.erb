@@ -1,22 +1,24 @@
-<div class="well">
-  <div class="well">
-    <%= event.inspect %>
-  </div>
-  <div class="well">
-    <%= event.holder.inspect %>
-  </div>
-  <div class="well">
-    <% event.joins.each do |join| %>
-      <div class="well">
-        <%= join.inspect %>
-      </div>
-    <% end %>
-  </div>
-  <div class="well">
-    <% event.teams.each do |team| %>
-      <div class="well">
-        <%= team.inspect %>
-      </div>
-    <% end %>
+<div class="col-md-1" style="padding:0;">
+  <div class="card" style="height:700px;">
+    <div class="card-image">
+      <img src="<%= event.poster %>" class="img-responsive" />
+    </div>
+    <div class="card-header">
+      <h4 class="card-title"><%= event.title %></h4>
+      <h6 class="card-meta"><%= event.place %></h6>
+      <h6 class="card-meta"><%= event.showtime.strftime("%-m/%-d %I:%M%p") %></h6>
+      <h6 class="card-meta">대관비 : <%= event.rental_fee %>만원</h6>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"><%= event.holder.name %></h4>
+      <h6 class="card-meta"><%= event.holder.genre %></h6>
+      <h6 class="card-meta"><%= event.holder.mobile %></h6>
+      <h6 class="card-meta">
+        <a href="<%= event.holder.homepage_url %>">
+          <%= truncate event.holder.homepage_url, :length => 20, :separator => /\w/, :omission => "..." %>
+        </a>
+      </h6>
+      <%= truncate event.holder.description, :length => 400, :separator => /\w/, :omission => "..." %>
+    </div>
   </div>
 </div>
