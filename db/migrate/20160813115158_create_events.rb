@@ -2,7 +2,6 @@ class CreateEvents < ActiveRecord::Migration[5.0]
   def change
     create_table :events do |t|
 
-      # Relations
       t.integer :team_id
 
       # Event information
