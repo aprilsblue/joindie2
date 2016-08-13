@@ -11,26 +11,17 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="inactive"><a href="/">Home</a></li>
-        <li><a href="/events/:id">event</a></li>
-        
+        <li<%= ' class=active' if params[:controller] == 'home' %>><%= link_to('홈', '/') %></li>
+        <li<%= ' class=active' if params[:controller] == 'events' and not params[:action] == 'new' %>><%= link_to('연합공연 정보', '/events') %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      
-      
-            <% if team_signed_in? %>
-               <li><a href="/events/new">create</a></li>
-               <li class="inactive"><a href="/teams/sign_out">sign_out<span class="sr-only">(current)</span></a></li>
-            <% else %>
-               <li><a href="/teams/sign_in">sign in</a></li>
-               <li class="inactive"><a href="/teams/sign_up">sign up <span class="sr-only">(current)</span></a></li>
-            <% end %>
-          
-      
-        
-        
-      
-      
+        <% if team_signed_in? %>
+          <li<%= ' class=active' if params[:controller] == 'events' and params[:action] == 'new' %>><%= link_to('연합공연 만들기', '/events/new') %></li>
+          <li><%= link_to('로그아웃', '/teams/sign_out') %></li>
+        <% else %>
+          <li><%= link_to('로그인', '/teams/sign_in') %></li>
+          <li><%= link_to('가입하기', '/teams/sign_up') %></li>
+        <% end %>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
