@@ -12,6 +12,10 @@
     <%= f.date_field :showtime, required: true %>
   </div>
   <div class="form-group">
+    <%= f.label :size %>
+    <%= f.number_field :size, required: true %>
+  </div>
+  <div class="form-group">
     <%= f.label :rental_fee %>
     <%= f.number_field :rental_fee, required: true %>
   </div>

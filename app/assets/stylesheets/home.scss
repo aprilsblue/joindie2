@@ -1,3 +1,8 @@
+.schedule-container {
+  margin: {
+    top: 4rem;
+  }
+}
 .schedule_box {
   width: 16rem;
   height: 25rem;
@@ -5,6 +10,20 @@
   position: relative;
   float: left;
   margin: 0.2rem;
+  padding: 1rem;
+  text-align: center;
+  p {
+    font-size: 13pt;
+  }
+}
+.sunday {
+  border: solid 1px red;
+  background: {
+    color: #F5E3E3;
+  }
+  p {
+    color: red;
+  }
 }
 .event {
   border: 1px solid black;

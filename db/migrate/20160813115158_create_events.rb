@@ -10,6 +10,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.string :poster
       t.datetime :showtime
       t.integer :rental_fee
+      t.integer :size
 
       t.timestamps
     end

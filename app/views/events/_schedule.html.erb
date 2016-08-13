@@ -1,28 +1,50 @@
-<% unless @index == 1 %>
-  <% for i in 1..@before_day do %>
-    <div id="<%= (@today+@index).strftime("%Y-%m-%d") %>" class="schedule_box">
-      <%= (@today+@index).strftime('%Y-%m-%d') %>
-      <% Event.where('showtime LIKE ?', "%#{(@today+@index).strftime('%Y-%m-%d')}%").each do |e|  %>
-        <%= e.team_id %> / <%= e.place %> </br>
+<div class="schedule-box">
+  <% unless @index == 1 %>
+    <% for i in 1..@before_day do %>
+      <% if i == 1 %>
+        <div id="<%= (@today+@index).strftime("%Y-%m-%d") %>" class="schedule_box sunday">
+      <% else %>
+        <div id="<%= (@today+@index).strftime("%Y-%m-%d") %>" class="schedule_box">
+      <% end %>
+          <p><%= (@today+@index).strftime('%Y-%m-%d') %></p>
+          <% Event.where('showtime LIKE ?', "%#{(@today+@index).strftime('%Y-%m-%d')}%").each do |e|  %>
+            <%= link_to e.title, event_path(e.id) %> </br>
+          <% end %>
+        </div>
+    <% end %>
+  <% end %>
+
+  <% if @index == 1 %>
+    <% for i in 1..@after_day do %>
+      <% if i == 1 %>
+        <div id="<%= (@today+i-1).strftime("%Y-%m-%d") %>" class="schedule_box sunday">
+      <% else %>
+        <div id="<%= (@today+i-1).strftime("%Y-%m-%d") %>" class="schedule_box">
+      <% end %>
+          <p><%= (@today+i-1).strftime("%Y-%m-%d") %></p>
+          <% Event.where('showtime LIKE ?', "%#{(@today+i-1).strftime('%Y-%m-%d')}%").each do |e|  %>
+            <%= link_to e.title, event_path(e.id) %> </br>
+          <% end %>
+        </div>
+    <% end %>
+  <% else %>
+    <div id="<%= (@today+i-1).strftime("%Y-%m-%d") %>" class="schedule_box">
+      <p><%= (@today+i-1).strftime("%Y-%m-%d") %></p>
+      <% Event.where('showtime LIKE ?', "%#{(@today+i-1).strftime('%Y-%m-%d')}%").each do |e|  %>
+        <%= link_to e.title, event_path(e.id) %> </br>
       <% end %>
     </div>
   <% end %>
-<% end %>
-
-<% for i in 1..@after_day do %>
-  <div id="<%= (@today+i-1).strftime("%Y-%m-%d") %>" class="schedule_box">
-    <%= (@today+i-1).strftime("%Y-%m-%d") %>
-    <% Event.where('showtime LIKE ?', "%#{(@today+i-1).strftime('%Y-%m-%d')}%").each do |e|  %>
-      <%= e.team_id %> / <%= e.place %> </br>
+  <% for i in 1..14 do %>
+    <% if i == 1 ||  i == 8 %>
+      <div id="<%= (@today-@index+i+7).strftime("%Y-%m-%d") %>" class="schedule_box sunday">
+    <% else %>
+      <div id="<%= (@today-@index+i+7).strftime("%Y-%m-%d") %>" class="schedule_box">
     <% end %>
-  </div>
-<% end %>
-
-<% for i in 1..14 do %>
-  <div id="<%= (@today-@index+i+7).strftime("%Y-%m-%d") %>" class="schedule_box">
-    <%= (@today-@index+i+7).strftime("%Y-%m-%d") %>
-    <% Event.where('showtime LIKE ?', "%#{(@today-@index+i+7).strftime('%Y-%m-%d')}%").each do |e|  %>
-      <%= e.team_id %> / <%= e.place %> </br>
-    <% end %>
-  </div>
-<% end %>
+        <p><%= (@today-@index+i+7).strftime("%Y-%m-%d") %></p>
+        <% Event.where('showtime LIKE ?', "%#{(@today-@index+i+7).strftime('%Y-%m-%d')}%").each do |e|  %>
+          <%= link_to e.title, event_path(e.id) %></br>
+        <% end %>
+      </div>
+  <% end %>
+</div>
