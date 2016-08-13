@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  mount_uploader :poster, UploaderUploader
   # Team 1:N Event
   belongs_to :holder, class_name: :Team, foreign_key: :team_id
 
