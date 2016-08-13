@@ -1,0 +1,19 @@
+<% unless @index == 1 %>
+  <% for i in 1..@before_day do %>
+    <div id="<%= (@today+@index).to_s.strftime("%Y-%m-%d") %>" class="schedule_box">
+      <%= (@today+@index).to_s.strftime '%Y-%m-%d' %>
+    </div>
+  <% end %>
+<% end %>
+
+<% for i in 1..@after_day do %>
+  <div id="<%= (@today+i-1).strftime("%Y-%m-%d") %>" class="schedule_box">
+    <%= (@today+i-1).strftime("%Y-%m-%d") %>
+  </div>
+<% end %>
+
+<% for i in 1..14 do %>
+  <div id="<%= (@today-@index+i+7).strftime("%Y-%m-%d") %>" class="schedule_box">
+    <%= (@today-@index+i+7).strftime("%Y-%m-%d") %>
+  </div>
+<% end %>
