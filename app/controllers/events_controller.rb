@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    @events = Event.all.order(showtime: :desc)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -74,6 +74,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:place, :showtime, :rental_fee, :poster)
+    params.require(:event).permit(:place, :showtime, :rental_fee, :poster, :size)
   end
 end
