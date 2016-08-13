@@ -32,9 +32,14 @@ events.each do |i|
   event = Event.new
   event.team_id = teams_a.sample
   event.place = Faker::Pokemon.location
-  event.poster = Faker::Placeholdit.image("100x141")
   event.showtime = Faker::Time.between(DateTime.now - 1, DateTime.now + 20.days) #=> "2014-09-18 12:30:59 -0700"
   event.rental_fee = Faker::Number.between(10, 60)
+
+  file = Tempfile.new(['temp', '.png'])
+  stringio = open(Faker::Placeholdit.image('200x283', 'png', Faker::Color.hex_color[1..6], Faker::Color.hex_color[1..6], Faker::Lorem.word))
+  file.binmode
+  file.write stringio.read
+  event.poster = file
   event.save!
 end
 

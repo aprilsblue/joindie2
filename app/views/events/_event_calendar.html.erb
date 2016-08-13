@@ -1,0 +1,22 @@
+<div class="well">
+  <div class="well">
+    <%= event.inspect %>
+  </div>
+  <div class="well">
+    <%= event.holder.inspect %>
+  </div>
+  <div class="well">
+    <% event.joins.each do |join| %>
+      <div class="well">
+        <%= join.inspect %>
+      </div>
+    <% end %>
+  </div>
+  <div class="well">
+    <% event.teams.each do |team| %>
+      <div class="well">
+        <%= team.inspect %>
+      </div>
+    <% end %>
+  </div>
+</div>
