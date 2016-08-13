@@ -6,9 +6,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
-  <body>
-    <%= yield %>
+  <body style="min-height:2000px; padding-top: 70px;">
+    <%= render :partial => "layouts/navbar" %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
