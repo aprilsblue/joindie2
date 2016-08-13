@@ -4,5 +4,4 @@ class Event < ApplicationRecord
     #m:n
     has_many :joins
     has_many :teams, through: :joins
-    
 end

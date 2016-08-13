@@ -7,7 +7,6 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.datetime :end_time
       t.datetime :event_date
       t.integer :rental_fee
-
       t.integer :team_id
 
       t.timestamps
