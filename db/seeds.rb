@@ -31,6 +31,7 @@ end
 events.each do |i|
   event = Event.new
   event.team_id = teams_a.sample
+  event.title = Faker::Pokemon.name
   event.place = Faker::Pokemon.location
   event.showtime = Faker::Time.between(DateTime.now - 1, DateTime.now + 20.days) #=> "2014-09-18 12:30:59 -0700"
   event.rental_fee = Faker::Number.between(10, 60)
