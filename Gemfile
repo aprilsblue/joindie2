@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Forgery for fake seed data
+gem 'forgery', '0.6.0'
+# Devise
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
