@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   # devise route for team as user
-  devise_for :teams
+  devise_for :teams, controllers: {registrations: "teams/registrations"}
 
   # resources route for 'join' and 'event'
   resources :joins
