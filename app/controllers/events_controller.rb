@@ -41,11 +41,12 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.team_id = current_team.id
 
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'
-        format.html { redirect_to(@event) }
+        format.html { redirect_to events_path }
         format.xml  { render xml: @event, status: :created, location: @event }
       else
         format.html { render action: 'new' }
@@ -95,6 +96,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:event_place, :start_time, :end_time, :rental_fee, :event_date)
+    params.require(:event).permit(:place, :showtime, :rental_fee, :poster)
   end
 end
