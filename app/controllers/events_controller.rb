@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully created.'
-        format.html { redirect_to events_path }
+        format.html { redirect_to root_path }
         format.xml  { render xml: @event, status: :created, location: @event }
       else
         format.html { render action: 'new' }
@@ -74,6 +74,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:place, :showtime, :rental_fee, :poster, :size)
+    params.require(:event).permit(:title, :place, :showtime, :rental_fee, :poster, :size)
   end
 end

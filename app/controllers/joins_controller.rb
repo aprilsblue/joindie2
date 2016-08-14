@@ -9,12 +9,12 @@ class JoinsController < ApplicationController
   end
 
   def create
-    @join = Join.new(join_params)
+    @join = Join.new(team_id: current_team.id, event_id: params[:id])
 
     respond_to do |format|
       if @join.save
         flash[:notice] = 'Join was successfully created.'
-        format.html { redirect_to(@join) }
+        format.html { redirect_to :back }
         format.xml  { render xml: @join, status: :created, location: @join }
       else
         format.html { render action: 'new' }
@@ -43,11 +43,11 @@ class JoinsController < ApplicationController
   end
 
   def destroy
-    @join = Join.find(params[:id])
+    @join = Join.find_by(team_id: current_team.id, event_id: params[:id])
     @join.destroy
 
     respond_to do |format|
-      format.html { redirect_to(joins_url) }
+      format.html { redirect_to :back }
       format.xml  { head :ok }
     end
   end

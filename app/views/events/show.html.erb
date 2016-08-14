@@ -36,7 +36,7 @@
               <h6 class="card-meta"><%= join.team.mobile %></h6>
               <h6 class="card-meta">
                 <a href="<%= join.team.homepage_url %>"><%= join.team.homepage_url %></a>
-              </h6> 
+              </h6>
             </div>
           </div>
           <div class="col-md-5">
@@ -48,36 +48,43 @@
         <% end %>
       </div>
 
-      <%= link_to('이 밴드들과의 공연 신청하기', '#', class: "btn flat positive inverse") %>
-      <%= link_to('공연 신청 취소하기', '#', class: "btn flat negative inverse") %>
+      <% if @event.holder.id == current_team.id %>
 
-      <div class="card-footer">
-        <h1 class="card-title">연합공연 신청 관리</h1>
-        <% pending_joins = @event.joins.select { |hash| !hash[:approved] } %>
-        <% pending_joins.each do |join| %>
-        <div class="row">
-          <div class="col-md-2">
-            <div class="card-header" style="padding-left:0;padding-right:0;">
-              <h4 class="card-title"><%= join.team.name %></h4>
-              <h6 class="card-meta"><%= join.team.genre %></h6>
-              <h6 class="card-meta"><%= join.team.mobile %></h6>
-              <h6 class="card-meta">
-                <a href="<%= join.team.homepage_url %>"><%= join.team.homepage_url %></a>
-              </h6>
+      <% elsif Join.find_by(team_id: current_team.id, event_id: @event.id).nil? %>
+        <%= link_to('이 밴드들과의 공연 신청하기', joins_path(id: @event.id), method: 'post', class: "btn flat positive inverse") %>
+      <% else %>
+        <%= link_to('공연 신청 취소하기', join_path(id: @event.id), method: 'delete', class: "btn flat negative inverse") %>
+      <% end %>
+
+      <% if @event.holder.id == current_team.id %>
+        <div class="card-footer">
+          <h1 class="card-title">연합공연 신청 관리</h1>
+          <% pending_joins = @event.joins.select { |hash| !hash[:approved] } %>
+          <% pending_joins.each do |join| %>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="card-header" style="padding-left:0;padding-right:0;">
+                <h4 class="card-title"><%= join.team.name %></h4>
+                <h6 class="card-meta"><%= join.team.genre %></h6>
+                <h6 class="card-meta"><%= join.team.mobile %></h6>
+                <h6 class="card-meta">
+                  <a href="<%= join.team.homepage_url %>"><%= join.team.homepage_url %></a>
+                </h6>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card-body">
+                <%= join.description %>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <%= link_to('수락', '#', class: "btn flat positive")%>
+              <%= link_to('거절', '#', class: "btn flat negative")%>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card-body">
-              <%= join.description %>
-            </div>
-          </div>
-          <div class="col-md-1">
-            <%= link_to('수락', '#', class: "btn flat positive")%>
-            <%= link_to('거절', '#', class: "btn flat negative")%>
-          </div>
+          <% end %>
         </div>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
